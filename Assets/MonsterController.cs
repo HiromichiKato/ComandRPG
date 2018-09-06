@@ -15,6 +15,8 @@ public class MonsterController : MonoBehaviour {
     public float recover = 30;
     //魔法について設定
     public float magic = 10;
+    public float MP = 30;
+    public float needMP = 10;
     //すばやさを設定
     public float speed = 25;
     //animationを入れる
@@ -61,18 +63,26 @@ public class MonsterController : MonoBehaviour {
 	void Update () {
         if(isAttack == true) {
             this.animator.SetBool("Attack", true);
+        } else {
+            this.animator.SetBool("Attack", false);
         }
 
         if(isDefense == true) {
             this.animator.SetBool("Defense", true);
+        } else {
+            this.animator.SetBool("Defense", false);
         }
 
         if(isMagic == true) {
             this.animator.SetBool("Magic", true);
+        } else {
+            this.animator.SetBool("Magic", false);
         }
 
         if(isRecovery == true) {
             this.animator.SetBool("Recovery", true);
+        } else {
+            this.animator.SetBool("Recovery", false);
         }
 	}
 }
