@@ -1048,6 +1048,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   monsterController: {fileID: 1078630306}
   enemyController: {fileID: 1116567446}
+  Attack: {fileID: 61895648}
+  Defense: {fileID: 372833585}
+  Magic: {fileID: 950674329}
+  Recovery: {fileID: 1808456069}
 --- !u!4 &936960091
 Transform:
   m_ObjectHideFlags: 0
@@ -1348,6 +1352,8 @@ MonoBehaviour:
   defense: 15
   recover: 30
   magic: 10
+  MP: 30
+  needMP: 10
   speed: 25
 --- !u!114 &1078630307
 MonoBehaviour:

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
-
+    
     //hpを設定
     public float eneHP = 50;
     //攻撃力を設定
@@ -16,9 +16,6 @@ public class EnemyController : MonoBehaviour {
     private Animator animator;
 
 
-
-
-
 	// Use this for initialization
 	void Start () {
         animator = GetComponent<Animator>();
@@ -27,5 +24,9 @@ public class EnemyController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         
+        
 	}
+
+
 }
+
