@@ -1483,9 +1483,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 369d72a9af28c4f999f143d7377c83b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eneHP: 50
+  eneHP: 60
   enepower: 15
   enedefense: 5
+  enerecovery: 10
   enespeed: 15
 --- !u!1 &1254201354
 GameObject:

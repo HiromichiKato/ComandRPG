@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public class MonsterController : MonoBehaviour {
     
     //hpを設定
@@ -20,13 +19,13 @@ public class MonsterController : MonoBehaviour {
     //すばやさを設定
     public float speed = 25;
     //animationを入れる
-    private Animator animator;
+    public Animator animator;
 
     bool isAttack;
     bool isDefense;
     bool isMagic;
     bool isRecovery;
-
+    bool isAlive;
 
     public void APush() {
         isAttack = true;
@@ -54,12 +53,11 @@ public class MonsterController : MonoBehaviour {
     }
 
 
-	// Use this for initialization
+	
 	void Start () {
         animator = GetComponent<Animator>();
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
         if(isAttack == true) {
             this.animator.SetBool("Attack", true);
@@ -83,6 +81,17 @@ public class MonsterController : MonoBehaviour {
             this.animator.SetBool("Recovery", true);
         } else {
             this.animator.SetBool("Recovery", false);
+        }
+
+        if(monHP >= 0) {
+            isAlive = true;
+        } else {
+            isAlive = false;
+        }
+        if(isAlive == true) {
+            this.animator.SetBool("Death", false);
+        } else {
+            this.animator.SetBool("Death", true);
         }
 	}
 }
