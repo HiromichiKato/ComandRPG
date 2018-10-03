@@ -5,12 +5,10 @@ using UnityEngine.UI;
 
 public class MessageScript : MonoBehaviour {
 
-　  //BattleManagerを入れる
-    public BattleManager battleManager;
 	//メッセージUI
-    private Text messageText;
+    public Text messageText;
 	//表示するメッセージ
-	private string message;
+	public string message;
 	//1回のメッセージの最大文字数
 	[SerializeField]
 	private int maxTextLength = 90;
@@ -21,32 +19,50 @@ public class MessageScript : MonoBehaviour {
 	private int maxLine = 3;
 	//現在の行
 	private int nowLine = 0;
-	//テキストスピード
-	[SerializeField]
-	private float textSpeed = 0.05f;
-	//経過時間
-	private float elapsedTime = 0f;
-	//今見ている文字数
-	private int nowTextNum = 0;
-	//マウスのクリックを促すアイコン
-	private Image clickIcon;
-	//クリックアイコンの点滅秒数
-	[SerializeField]
-	private float clickFlashTime = 0.2f;
-	//1回分メッセージを表示したかどうか
-	private bool isOneMessage = false;
-	//メッセージをすべて表示したかどうか
-	private bool isEndMessage = false;
+	
+
+	
 
 
 	// Use this for initialization
 	void Start () {
-		
+		messageText = GetComponentInChildren<Text>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
-		
+
+	}
+	public void SetStartMessage() {
+		messageText.text = "OOOはどうする？";
+	}
+	public void SetAttackMessage() {
+		messageText.text = "OOOの攻撃。";
+	}
+	public void SetdefenseMessage() {
+		messageText.text = "OOOは身を固めた。";
+	}
+	public void SetMagicMessage() {
+		messageText.text = "OOOは魔法を使った。";
+	}
+	public void SetRecoveryMessage() {
+		messageText.text = "OOOはHPを回復した。";
+	}
+
+	public void SetEAttackMessage() {
+		messageText.text = "敵は攻撃した。";
+	}
+	public void SetEDAefenseMessage() {
+		messageText.text = "敵は防御した。";
+	}
+	public void SetEMagicMessage() {
+		messageText.text = "敵の魔法を使った。";
+	}
+	public void SetERecoveryMessage() {
+		messageText.text = "敵は回復した。";
+	}
+	public void SetEDeathMessage() {
+		messageText.text = "敵を倒した。";
 	}
 }

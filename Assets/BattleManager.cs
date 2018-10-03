@@ -8,6 +8,10 @@ public class BattleManager : MonoBehaviour {
     //それぞれの数値を入れるためにスクリプトを入れる
     public MonsterController monsterController;
     public EnemyController enemyController;
+    //messageを入れるためにスクリプトを入れる
+    public MessageScript messageScript;
+    //HPBarControllerを入れる
+    public HPBarController hPBarController;
     //それぞれのButtonを入れる
     public GameObject Attack;
     public GameObject Defense;
@@ -27,6 +31,9 @@ public class BattleManager : MonoBehaviour {
         float eHP = enemyController.eneHP;
         float ePo = enemyController.enepower;
         float eRe = enemyController.enerecovery;
+        
+        string messagGe = messageScript.message;
+
 
     }
 
@@ -73,6 +80,7 @@ public class BattleManager : MonoBehaviour {
         switch (phase) {
             case BattlePhase.myCommandWait:
                 Debug.Log("コマンド待機中");
+                messageScript.SetStartMessage();
                 break;
 
             case BattlePhase.myTurn:
@@ -109,6 +117,8 @@ public class BattleManager : MonoBehaviour {
         enemyController.eneHP = enemyController.eneHP - monsterController.power;
         Debug.Log("" + monsterController.power + "のダメージを与えた。");
         Debug.Log("敵の残りHPは" + enemyController.eneHP);
+        messageScript.SetAttackMessage();
+        hPBarController.MonsterAttack();
     }
 
     public void OnClickDefense() {
@@ -120,6 +130,7 @@ public class BattleManager : MonoBehaviour {
             phase = BattlePhase.myTurn;
         }
         Debug.Log("" + monsterController.defense + "のダメージを防いだ。");
+        messageScript.SetdefenseMessage();
     }
 
     public void OnClickMagic() {
@@ -133,6 +144,7 @@ public class BattleManager : MonoBehaviour {
         monsterController.MP = monsterController.MP - monsterController.needMP;
         Debug.Log("MPを" + monsterController.needMP + "消費した。残りMPは" + monsterController.MP + "");
         Debug.Log("攻撃力が" + monsterController.magic + "上がった。");
+        messageScript.SetMagicMessage();
     }
 
     public void OnClickRecovery() {
@@ -144,6 +156,7 @@ public class BattleManager : MonoBehaviour {
             phase = BattlePhase.myTurn;
         }
         Debug.Log("HPを" + monsterController.recover + "回復した。");
+        messageScript.SetRecoveryMessage();
     }
 
 }

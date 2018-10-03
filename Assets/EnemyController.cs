@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour {
 
+    //MessageScriptを入れる
+    public MessageScript messageScript;
+    //HPBarControllerを入れる
+    public HPBarController hPBarController;
     //hpを設定
     public float eneHP = 60;
     //攻撃力を設定
@@ -22,6 +26,7 @@ public class EnemyController : MonoBehaviour {
     }
 
     float TimeEDCount = 2;
+    
 
     void Update() {
         if(enemyState == EnemyState.EIdel) {
@@ -33,24 +38,30 @@ public class EnemyController : MonoBehaviour {
         switch(enemyState) {
             case EnemyState.EAttack:
                 this.animator.SetBool("EAttack", true);
+                messageScript.SetEAttackMessage();
+                hPBarController.EnemyAttack();
                 enemyState = EnemyState.EIdel;
                 break;
             case EnemyState.EDefense:
                 this.animator.SetBool("EDefense", true);
+                messageScript.SetEDAefenseMessage();
                 enemyState = EnemyState.EIdel;
                 break;
             case EnemyState.EMagic:
                 this.animator.SetBool("EMagic", true);
+                messageScript.SetEMagicMessage();
                 enemyState = EnemyState.EIdel;
                 break;
             case EnemyState.ERecovery:
                 this.animator.SetBool("ERecovery", true);
+                messageScript.SetERecoveryMessage();
                 enemyState = EnemyState.EIdel;
                 break;
             case EnemyState.EDeath:
             TimeEDCount -= Time.deltaTime;
             if(TimeEDCount <= 0) {
                 this.animator.SetBool("EDeath", true);
+                messageScript.SetEDeathMessage();
             }
                 break;
         }
@@ -85,7 +96,7 @@ public class EnemyController : MonoBehaviour {
                 Debug.Log("敵は防御した。");
                 enemyState = EnemyState.EDefense;
             }
-        } else {
+        } else if(eneHP<= 25 && eneHP > 0) {
             int num = Random.Range(1, 11);
             if (num <= 3) {
                 Debug.Log("敵は防御した。");
@@ -95,6 +106,8 @@ public class EnemyController : MonoBehaviour {
                 Debug.Log("敵は回復した。");
                 enemyState = EnemyState.ERecovery;
             }
+        } else if(eneHP <= 0) {
+            enemyState = EnemyState.EDeath;
         }
     }
 }
